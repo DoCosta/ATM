@@ -3,7 +3,7 @@ package ATM;
 import java.util.ArrayList;
 
 public class Database {
-    static ArrayList<Account> accounts = new ArrayList<Account>() ;;
+    static ArrayList<Account> accounts = new ArrayList<Account>();
 
     public Database(){
         Account account1 = new Account("Customer1", 1, 1234, 2000, 1900, true);
@@ -20,16 +20,18 @@ public class Database {
 
     public static Account getAccount(int accountNumber){
         for (Account account : accounts) {
-            if(account.getAccountNumber() == accountNumber) 
-            return account;
+            if(account.getAccountNumber() == accountNumber) {
+                return account;
+            }
         }
         return null; //If no matching account number is found
     }
 
     private Account getUserPin(int PIN){
         for (Account account : accounts) {
-            if(account.getPin() == PIN) 
-            return account;
+            if(account.getPin() == PIN) {
+                return account;
+            }
         }
         return null; //If no matching account Pin is found
     }

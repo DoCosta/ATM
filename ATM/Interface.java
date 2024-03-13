@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Interface {
+
     private JFrame frame;
     private JTextField textField;
     private JTextField textField2;
@@ -12,13 +13,17 @@ public class Interface {
     private int SCREEN_WIDTH = 600;
     private int SCREEN_HEIGHT = 600;
     private JButton sendButton;
-    Account currentAccount = Database.getAccount(1);
-    private int CurrentAccountNumber = currentAccount.getAccountNumber();
-    private String CurrentUser = currentAccount.getUsername();
-    private double CurrentAccountBalance = currentAccount.getAvailableBalance();
-
+    private Account currentAccount;
 
     public Interface() {
+        // link currentAccoung with the account1 from Databse.java
+        this.currentAccount = Database.getAccount(1);
+        System.out.println(this.currentAccount);
+        if (currentAccount == null) {
+            throw new RuntimeException("currentAccount is null");
+            
+        }
+
         // Create the main frame
         frame = new JFrame("User Interface");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,13 +36,13 @@ public class Interface {
         textField = new JTextField();
         textField.setEditable(false);
         textField.setBounds(SCREEN_WIDTH/2 - 100, SCREEN_HEIGHT/2-150, 200, 30);
-        textField.setText("User: "  + CurrentUser);
+        textField.setText("User: "  + currentAccount.getUsername());
         textField.setHorizontalAlignment(JTextField.CENTER);
         
         textField2 = new JTextField();
         textField2.setEditable(false);
         textField2.setBounds(SCREEN_WIDTH/2 - 100, SCREEN_HEIGHT/2-100, 200, 30);
-        textField2.setText("Balance: "  + Double.toString(CurrentAccountBalance));
+        textField2.setText("Balance: "  + currentAccount.getMaxBalance());
         textField2.setHorizontalAlignment(JTextField.CENTER);
 
         // Create the withdraw button
